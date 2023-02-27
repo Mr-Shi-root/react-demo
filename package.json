@@ -1,0 +1,26 @@
+{
+  "name": "react-demo",
+  "version": "1.0.0",
+  "description": "react小白自学",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mr-Shi-root/react-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mr-Shi-root/react-demo/issues"
+  },
+  "homepage": "https://github.com/Mr-Shi-root/react-demo#readme",
+  "dependencies": {
+    "@types/react-dom": "^18.0.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "scheduler": "^0.23.0"
+  }
+}
