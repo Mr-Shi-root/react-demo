@@ -1,7 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 
-
+// Main
+// getDerivedStateFromProps React18新引入的生命周期，通过fiber架构解决了嵌套组件render时间长，导致阻塞渲染的问题。
 
 class Child extends React.Component{
   constructor(props) {
@@ -18,6 +19,10 @@ class Child extends React.Component{
   shouldComponentUpdate() {
     return true
   }
+
+  /**
+   * componentWillReceiveProps,componentWillUpdateq弃用，和getDerivedStateFromProps冲突
+   */
 
   // componentWillReceiveProps() {
   //   console.log('componentWillReceiveProps');
