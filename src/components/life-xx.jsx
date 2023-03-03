@@ -10,12 +10,7 @@ import ReactDOM from "react-dom/client"
 
 // react的生命周期之【更新】【挂载】
 
-// 挂载 componentWillMount componentWillUnMount componentMount
-// 更新 componentWillReceiveProps shouldComponentUpdate componentWillUpdate getSnapshotBeforeUpdate componentDidUpdate
-
-// 将废弃 componentWillMount componentWillUpdate componentWillReceiveProps 
-
-
+// 挂载
 
 class Child extends React.Component {
 
