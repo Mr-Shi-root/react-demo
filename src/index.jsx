@@ -1,42 +1,51 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom/client"
+import ReactDOM from "react-dom/client";
 
-
-class Index extends React.Component {
-
-
-    constructor(props) {
-        super(props)
-
-        this.setState = {
-
-
-        }
-
-    }
-
-
-    render() {
-
-        return (
-            <div></div>
-
-        )
-
-    }
-
-
+function Index(props)  {            
+    return (   
+        <div>
+          {props.left}
+          {props.right}
+        </div>
+    )
 }
+
+function Left() {
+  return (
+      <div>left</div>    
+  )
+}
+function Right() {
+  return (
+      <div>right</div>    
+  )
+}
+
 
 export default function App() {
 
   return (
     <div>
-      <Index></Index> 
+      {/* <Index item={'item'}>
+        <div>123</div> 
+        <div>123</div>  
+        <div>123</div> 
+        <div>123</div> 
+        <div>123</div> 
+      </Index>  */}
+      <Index
+        left={
+          <Left></Left>
+        }
+        right={
+          <Right></Right>
+        }
+      ></Index>
       <h2>我是react</h2>
     </div>
   )
 }
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 console.log(document.getElementById("root"));
