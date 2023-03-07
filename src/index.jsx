@@ -15,7 +15,7 @@ class Index extends React.Component {
 
     }
 
- 
+
     render() {
 
         return (
@@ -33,7 +33,7 @@ export default function App() {
   return (
     <div>
       <Index></Index> 
-      <h2>我是react</h2>
+      <h2>加油</h2>
     </div>
   )
 }
