@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client"
 
+import Color from "./text/text-1.jsx";
+
+
+// Context介绍
+
+const ThemeContext = React.createContext('dark')
 
 class Index extends React.Component {
 
@@ -9,6 +15,11 @@ class Index extends React.Component {
         super(props)
 
         this.setState = {
+          colors: {
+            blue: '#3339FF',
+            yellow: '#E8F909',
+            red: '#F32B07'
+          },
 
 
         }
@@ -18,8 +29,15 @@ class Index extends React.Component {
 
     render() {
 
+      const colors = this.state.colors
+
         return (
-            <div></div>
+            <div>
+              <ThemeContext.Provider value={colors}>
+                <Color></Color>
+              </ThemeContext.Provider>
+              
+            </div>
 
         )
 
