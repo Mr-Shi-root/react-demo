@@ -33,7 +33,7 @@ function NameSearch(props) {
         props.setValue(e.target.value)
     }
     return (
-        <input type="text" onChange={handleClick} name="search" placeholder="请输入产品名称" id="" />
+        <input type="text" onChange={handleClick} value={props.value} name="search" placeholder="请输入产品名称" id="" />
     )
 }
 
@@ -44,7 +44,7 @@ function CheckState(props) {
     }
     return (
         <div>
-            <input type="checkbox" onChange={handleClick} name="" id="male" />
+            <input type="checkbox" onChange={handleClick} checked={props.checked} name="" id="male" />
             <label htmlFor="male">是否过滤无库存</label>
         </div>
     )
@@ -128,7 +128,7 @@ class Index extends React.Component {
         super(props)
 
         this.state = {
-            value: '', 
+            value: 'ip', 
             isCheck: false
         }
 
