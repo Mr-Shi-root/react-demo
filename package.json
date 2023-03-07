@@ -21,11 +21,13 @@
   "homepage": "https://github.com/Mr-Shi-root/react-demo#readme",
   "dependencies": {
     "@types/react-dom": "^18.0.8",
+    "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
     "scheduler": "^0.23.0",
+    "style-loader": "^3.3.1",
     "webpack-dev-server": "^4.11.1"
   },
   "browserslist": {

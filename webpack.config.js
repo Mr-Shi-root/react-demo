@@ -18,6 +18,10 @@ module.exports = {
                 test: /\.(js|jsx)/,
                 loader: "babel-loader",
             },
+            {
+                test: /\.(css)/,
+                use: ['style-loader', 'css-loader']
+            }
         ]
     },
     mode: "development",
