@@ -4,9 +4,12 @@ import ReactDOM from "react-dom/client"
 // Refs
 // 会在挂载结束的时候，才会获得Dom元素，在constructor中获取不到
 
-// 通过props去获取子组件的dom元素 Child组件
+// 通过props去获取子组件的dom元素，prop的值绑定到子组件里的ref上 Child组件
 
 // forwardsRef 可以返回一个组件 FancyButton组件
+
+
+// 注意！！ref不是props属性，所以引入了 React.forwardRef 能够传递 ref 和 props
 
 
 // forwardRef返回一个组件
