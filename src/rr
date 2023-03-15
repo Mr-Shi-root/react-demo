@@ -19,7 +19,7 @@
 			"    constructor(props) {",
 			"        super(props)",
 			"",
-			"        this.setState = {",
+			"        this.state = {",
 			"",
 			"",
 			"        }",
