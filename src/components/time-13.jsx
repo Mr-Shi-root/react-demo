@@ -17,6 +17,7 @@ function Example() {
   // useState的返回值就是一个数组
 
   // useEffect
+  // 更新，卸载的时候调用
   // 给函数组件增加操作副作用的能力
   // 副作用：在组件中执行 请求，订阅，或者手动修改dom的，我们统一把这些操作称为副作用
   // 跟class组件中 的componentDidCatch,componentWillUnmount,componentDidUpdate具有相同的用途
