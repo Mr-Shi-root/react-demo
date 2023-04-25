@@ -1,129 +1,100 @@
-import React from "react"
+import React, { useCallback, useState } from "react";
 import ReactDOM from "react-dom/client"
 
+/**
+ * 
+ * useCallBack 和 useMemo
+ * 
+ * 在A组件下，多次调用另一个组件B时
+ * 当其中一个B组件的某一个方法执行时，其他所有的组件都会重新渲染，
+ * 因为重新执行时，B组件的方法传入发生了改变，导致所有的B组件都需要重新render
+ * 这就存在性能问题，因为其他的组件也会重复render，为了解决这个问题
+ * ***解决方法***
+ * useCallback + shouldComponentUpdate 
+ * shouldComponentUpdate：传入的对象不同时，进行重新render
+ * useCallback：对传入的参数(函数)进行缓存，如果第二个参数(依赖)没有更改，才会生成新的入参
+ * 
+ * 
+ * 
+ * 
+ */
 
 
-// 对比类组件和函数组件
-// 类组件有生命周期，调用通过实例render，函数组件
+class Button extends React.Component {
 
-
-
-// react的生命周期之【更新】【挂载】
-
-// 挂载
-
-class Child extends React.Component {
-
-  constructor(props) {
-    super(props);
-    console.log('child constructor');
-
-    this.state = {
-      count: 0
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.onHandleClick === nextProps.onHandleClick) {
+      return false;
+    } else {
+      return true;
     }
-
-    this.listRef = React.createRef()
   }
-
-  /**
-   * 挂载阶段生命周期
-   */
-
-  // 销毁时候(将弃用)
-  componentWillUnmount() {
-    console.log('child componentWillUnmount');
-  }
-
-  // 挂载之前 
-  componentWillMount(e) {
-    console.log('child componentWillMount',e);
-  }
-
-  // 挂载完成 【重要】
-  componentDidMount(e) {
-    this.setState({
-      count: this.state.count + 1
-    })
-    console.log('child componentDidMount',e);
-  }
-
-  // 更新完成
-  componentDidUpdate(old_props, new_state, snapshot) {
-    // 此时this.props是我是新的props
-    // snapshot 是上面 getSnapshotBeforeUpdate 函数的返回值
-    const list = this.listRef.current;
-    console.log(list.scrollTop);
-    console.log('child componentDidUpdate',old_props, this.props, new_state, snapshot);
-  }
-
-
-
-
 
   render() {
-    console.log('render', this.state.count);
-    const { num } = this.props
+
+    const { onHandleClick, children } = this.props;
+
+    console.log(children, ":render");
+
     return (
-      <div ref={this.listRef}>aaaa
-        {num}
-        <span>111</span>
-        <h1>2222</h1>
-      </div>
+      <>
+        <button onClick={onHandleClick}>{children}</button>
+        <span>{Math.random()}</span>
+
+      </>
     )
   }
 }
 
-class Index extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      flag: true,
-      count: 0
-    }
-  }
-  handleClick = () =>  {
-    console.log('handleClick', this.state.flag);
-        setTimeout(() => {
-            this.setState({
-                count: this.state.count + 1
-            })           
-        }, 0)
+function Index() {
+
+  const [count1, setCount1] = useState(0)
+  const [count2, setCount2] = useState(0)
+  const [count3, setCount3] = useState(0)
+
+
+  const handleClick1 = () => {
+    setCount1(count1+1);
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        count: 1
-      })
-    }, 0)
-  }
+  const handleClick2 = useCallback(() => {
+    setCount2(count2+1)
+  }, [count2])
 
-  render() {
-    return (
-      <div>
-        {this.state.flag ? <Child num={this.state.count}></Child> : null}
-        <h2 onClick={this.handleClick}>点击</h2>
-      </div>
-    )
-  }
+  // const handleClick2 = () => {
+  //   setCount2(count2+1)
+  // } 
+
+  console.log(count1, count2, count3);
+
+  // button1 和 button3 绑定的都是匿名函数，每次app重新渲染，都是新的
+  // button2 通过useCallback，只要button2不去发生变化，那么就不会重新渲染
+  return (
+    <div>
+      <Button onHandleClick={handleClick1}><span>button</span></Button>
+      <Button onHandleClick={handleClick2}>button  </Button>
+      <Button onHandleClick={() => {setCount3(count3+1)}}>
+        <div>qqqq</div>
+      </Button>
+
+    </div>
+
+  )
+
 }
-
-
-
 
 export default function App() {
 
   return (
     <div>
-      <Index></Index> 
+      <Index></Index>
       <h2>我是react</h2>
     </div>
   )
 }
 
-
-
-
 const root = ReactDOM.createRoot(document.getElementById("root"))
 console.log(document.getElementById("root"));
 root.render(<App />)
+
+
