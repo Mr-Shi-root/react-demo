@@ -14,21 +14,30 @@ import ReactDOM from "react-dom/client"
  * shouldComponentUpdate：传入的对象不同时，进行重新render
  * useCallback：对传入的参数(函数)进行缓存，如果第二个参数(依赖)没有更改，才会生成新的入参
  * 
+ * 这是对于一个参数进行监听，防止多次渲染，如果参数过多，则需要写多个判断
+ * 为了避免这种情况，React提供了一个方法，PureComponent
  * 
+ * PureComponent原理就是
+ * 把props的所有属性拿出来遍历
+ * 把state的所有属性拿出来遍历
+ * 只要有属性的引入不一样 === ，就更新组件，否则不更新
+ * 可以省略shouldComponentUpdate
  * 
+ * shouldComponentUpdate的控制颗粒度更加细腻
  * 
  */
 
 
-class Button extends React.Component {
+// class Button extends React.Component {
+class Button extends React.PureComponent {
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.onHandleClick === nextProps.onHandleClick) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (this.props.onHandleClick === nextProps.onHandleClick) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
 
   render() {
 
