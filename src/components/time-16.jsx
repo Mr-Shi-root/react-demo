@@ -1,5 +1,5 @@
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import ReactDOM from "react-dom/client"
 
 /**
@@ -25,6 +25,11 @@ import ReactDOM from "react-dom/client"
  * 可以省略shouldComponentUpdate
  * 
  * shouldComponentUpdate的控制颗粒度更加细腻
+ * 
+ * React.memo就是函数式组件中的PureComponent
+ * 
+ * useMemo是对方法进行缓存，当重新渲染时，如果有其他经过复杂运算的函数，也要一同进行重新渲染，这就浪费了性能
+ * 这时可以通过useMemo做一个缓存
  * 
  */
 
@@ -70,10 +75,21 @@ function Index() {
   const handleClick2 = useCallback(() => {
     setCount2(count2+1)
   }, [count2])
+  
+  // 这种时候，当1,3任何一个变化的时候，userInfo都会发生改变，2都需要重新渲染，此时handleClick2上的useCallback就无效了，所以也需要对他做缓存
+  var userInfo = {
+    name: 'james',
+    age: 18
+  }
 
-  // const handleClick2 = () => {
-  //   setCount2(count2+1)
-  // } 
+  // 是一种缓存
+  const userInfo = useMemo(() => {
+    // 这里如果是复杂的函数，会无辜影响性能。
+    return {
+      name: 'james',
+      age: 18
+    }
+  })
 
   console.log(count1, count2, count3);
 
@@ -82,7 +98,7 @@ function Index() {
   return (
     <div>
       <Button onHandleClick={handleClick1}><span>button</span></Button>
-      <Button onHandleClick={handleClick2}>button  </Button>
+      <Button onHandleClick={handleClick2} userInfo={userInfo}>button  </Button>
       <Button onHandleClick={() => {setCount3(count3+1)}}>
         <div>qqqq</div>
       </Button>
