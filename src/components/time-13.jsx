@@ -15,6 +15,7 @@ function Example() {
   // count就是渲染中需要的数据
   // setCount就是修改数据的方法
   // useState的返回值就是一个数组
+  // useState 在16版本以前，是同步的，在18版本以后，是同步执行的异步操作。
 
   // useEffect
   // 更新，卸载的时候调用
