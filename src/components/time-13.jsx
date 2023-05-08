@@ -18,7 +18,7 @@ function Example() {
   // useState 在16版本以前，是同步的，在18版本以后，是同步执行的异步操作。
 
   // useEffect
-  // 更新，卸载的时候调用
+  // 更新，卸载的时候调用 
   // 给函数组件增加操作副作用的能力
   // 副作用：在组件中执行 请求，订阅，或者手动修改dom的，我们统一把这些操作称为副作用
   // 跟class组件中 的componentDidCatch,componentWillUnmount,componentDidUpdate具有相同的用途
@@ -27,8 +27,9 @@ function Example() {
   // react设置严格模式，React.StrictMode包裹根组件。
   // React18版本加入了分片更新，fiber架构
   // 目的是为了 useEffect 执行多次，不会影响我们最终 渲染的结果。所以执行的目的，故意设置在生产模式。
-  // 
-
+  // 放在最下面
+  // 不能放在if里 会打乱更新时候的useState/useEffect的执行顺序，然后出现错误
+  // 第二个参数，是一个数组 ，数组里元素发生变化，就会进行更新，若无，则默认全部，
 
 
 

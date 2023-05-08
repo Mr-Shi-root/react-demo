@@ -1,29 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client"
-
 
 /**
  * 
- * useRef()
- * 类似于vue的this.$ref.xxxx
+ * useCallback 和 useMemo
+ * 
  * 
  */
-
-function Button() {
-  const inputRef = useRef()
-
-  const onHandleClick = () => {
-    inputRef.current.focus()
-  }
-
-  return (
-    <div>
-      <input type="text" ref={inputRef} />
-      <button onClick={onHandleClick}>onClick</button>
-    </div>
-  )
-}
-
 
 class Index extends React.Component {
 
@@ -35,16 +18,14 @@ class Index extends React.Component {
 
 
         }
- 
+
     }
 
 
     render() {
 
         return (
-            <div>
-              <Button></Button>
-            </div>
+            <div></div>
 
         )
 
@@ -66,5 +47,4 @@ export default function App() {
 const root = ReactDOM.createRoot(document.getElementById("root"))
 console.log(document.getElementById("root"));
 root.render(<App />)
-
 
