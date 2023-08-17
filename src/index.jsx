@@ -1,40 +1,40 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client"
+import { BrowserRouter, Route } from './router'
 
 
-class Index extends React.Component {
+function Home(params) {
+  return (
+    <h1>Home</h1>
+  )
+}
 
+function About(params) {
+  return (
+    <h1>About</h1>
+  )
+}
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-
-
-        }
-
-    }
-
-
-    render() {
-
-        return (
-            <div></div>
-
-        )
-
-    }
-
-
+function Name(params) {
+  return (
+    <h1>Name</h1>
+  )
 }
 
 export default function App() {
 
   return (
-    <div>
-      <Index></Index> 
-      <h2>我是react</h2>
-    </div>
+    <BrowserRouter>
+
+      <>
+
+        <Route path={'/'} component={Home}></Route>
+        <Route path={'/about'} component={About}></Route>
+        <Route path={'/name'} component={Name}></Route>
+
+      </>
+    
+    </BrowserRouter>
   )
 }
 
