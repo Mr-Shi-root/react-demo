@@ -18,7 +18,13 @@ import { EditGameId } from "./EditGameId";
  * Routes：路由集合
  * Route：路由组件 path 和 element
  * 
- * useParams useLocation useSearchParams
+ * useParams useLocation useSearchParams useNavigate
+ * useParams：获取路由路径
+ * useLocation：浏览器url上的信息对象，有path等，具体的输出看吧
+ * useSearchParams：
+ * useNavigate： 路由跳转，并且可以通过state传递一些页面需要的参数，可不在url上显示
+ *      参数：跳转路径，参数 { state: { xxxx: xxxx }}
+ * 
  * 
  * 
  */
@@ -29,7 +35,7 @@ function App() {
 
             {/* 多路由的情况 */}
             <Route path='/' element={<Leagues />}>
-                <Route path=':id/edit' element={<EditGameId />} />  
+                <Route path=':id/edit' element={<EditGameId />}></Route>
                 <Route index element={<NeverDie />}></Route>
                 <Route path=':name' element={<GameId />} />
                 
