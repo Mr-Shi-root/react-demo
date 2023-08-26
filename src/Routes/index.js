@@ -19,7 +19,9 @@ import { EditGameId } from "./EditGameId";
  * Route：路由组件 path 和 element
  * 
  * useParams useLocation useSearchParams
- * 
+ * useParams: 当前浏览器的路由路径
+ * useLocation： 浏览器url的一些参数对象， 例如 pathname
+ * useSearchParams
  * 
  */
 
