@@ -1,21 +1,13 @@
 
 import React, { useEffect } from 'react';
 import { useParams, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 
 
 function GameId() {
     const {name} = useParams()
     let location = useLocation()
-
-    let [urlSearchParams, setUrlSearchParams] = useSearchParams()
-
-    console.log('urlSearchParams:',urlSearchParams);
-
-    useEffect(() => {
-        console.log('useEffect urlSearchParams: ',urlSearchParams);
-    })
-    
     console.log(location);
 
     let [searchParams, setSearchParams] = useSearchParams()
@@ -49,6 +41,7 @@ function GameId() {
 
     return (
         <>
+        <Outlet></Outlet>
             GameId {name}
 
             <button onClick={() => {handleClick(this)}}>跳转</button>
