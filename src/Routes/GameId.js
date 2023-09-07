@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useParams, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
+import { addNum, getNum } from '../features/counter/counterSlice'
+
 
 
 function GameId() {
@@ -43,6 +45,10 @@ function GameId() {
         <>
         <Outlet></Outlet>
             GameId {name}
+
+            
+
+            <button onClick={() => {handleClick(this)}}>+1</button>
 
             <button onClick={() => {handleClick(this)}}>跳转</button>
         </>
