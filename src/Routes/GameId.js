@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useParams, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import { addNum, getNum } from '../features/counter/counterSlice'
 
 
@@ -10,7 +12,10 @@ import { addNum, getNum } from '../features/counter/counterSlice'
 function GameId() {
     const {name} = useParams()
     let location = useLocation()
-    console.log(location);
+
+    let num = useSelector(state => state.counter.value)
+
+    const dispatch = useDispatch()
 
     let [searchParams, setSearchParams] = useSearchParams()
 
@@ -41,14 +46,19 @@ function GameId() {
 
     }
 
+    const handleAddNum = () => {
+        dispatch(addNum())
+    }
+
     return (
         <>
         <Outlet></Outlet>
             GameId {name}
 
+            Num: {num}
             
 
-            <button onClick={() => {handleClick(this)}}>+1</button>
+            <button onClick={() => {handleAddNum(this)}}>+1</button>
 
             <button onClick={() => {handleClick(this)}}>跳转</button>
         </>

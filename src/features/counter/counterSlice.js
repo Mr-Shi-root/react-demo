@@ -17,6 +17,7 @@ export const counterSlice = createSlice({
 })
 
 console.log('counterSlice:', counterSlice)
+console.log(counterSlice.reducer);
 
-export { addNum, getNum } from counterSlice.actions
+export const { addNum, getNum } = counterSlice.actions
 export default counterSlice.reducer
