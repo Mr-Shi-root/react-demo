@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addNum, getNum } from '../features/counter/counterSlice'
+import { addNum, getNum, addCustomNum } from '../features/counter/counterSlice'
 
 
 
@@ -13,7 +13,10 @@ function GameId() {
     const {name} = useParams()
     let location = useLocation()
 
-    let num = useSelector(state => state.counter.value)
+    const num = useSelector(state => state.counter.value)
+
+    console.log('location:',location);
+    // location: {pathname: '/aaa', search: '', hash: '', state: null, key: 'default'}
 
     const dispatch = useDispatch()
 
@@ -22,12 +25,11 @@ function GameId() {
     const navigate = useNavigate()
 
     useEffect(() => { // 最大是640k
+        console.log(3);
         // setSearchParams({
         //     id: 1,
         //     name: 12
         // })
-
-        console.log(searchParams.get('name'));
     })
 
     const handleClick = () => {
@@ -50,6 +52,16 @@ function GameId() {
         dispatch(addNum())
     }
 
+    const handleAddCustomNum = () => {
+        console.log(1);
+        dispatch(addCustomNum(2))
+        // setSearchParams({
+        //     id: 1,
+        //     name: 12
+        // })
+        console.log(2);
+    }
+
     return (
         <>
         <Outlet></Outlet>
@@ -58,7 +70,9 @@ function GameId() {
             Num: {num}
             
 
-            <button onClick={() => {handleAddNum(this)}}>+1</button>
+            {<button onClick={() => {handleAddNum(this)}}>+1</button>}
+
+            <button onClick={() => {handleAddCustomNum(this)}}>+2</button>
 
             <button onClick={() => {handleClick(this)}}>跳转</button>
         </>
