@@ -32,6 +32,30 @@ function GameId() {
         // })
     })
 
+    const multiply = (x) => {
+        return x * 10
+    }
+
+    const add = x => {
+        return x + 10
+    }
+
+    console.log(multiply(10), add(10));
+
+    const aaa = function() {
+        let arr = [].slice.apply(arguments);
+        console.log(arr);
+        return (x) => {
+            console.log(x, arr);
+            return arr.reduceRight((res, cb) => cb(res), x)
+        }
+    }
+
+    let a = aaa(multiply, add)
+    console.log(a);
+    let b = a(10)
+    console.log(b);
+
     const handleClick = () => {
 
         setSearchParams({
